@@ -6,5 +6,6 @@ The given data set from NASA provides us with information about the meteorites n
 ### Data Source ###
 https://data.nasa.gov/Space-Science/Meteorite-Landings/gh4g-9sfh
 
-
+### Access Dataset via SODA API ### 
+https://data.nasa.gov/resource/gh4g-9sfh.json
 
