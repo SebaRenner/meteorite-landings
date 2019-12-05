@@ -16,7 +16,7 @@ data[0].year;
 
 class App extends Component {
   render() {
-    return data[0].year;
+    return <p></p>
   }
 }
 
