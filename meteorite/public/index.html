@@ -37,7 +37,7 @@
 <noscript>You need to enable JavaScript to run this app.</noscript>
 <div id="root"></div>
 <div style="text-align: center">
-    <div id="mapid" style="height: 500px; width: 50%; margin: auto"></div>
+    <div id="mapid" style="height: 250px; width: 50%; margin: auto"></div>
     <p id="progress">50</p>
     <div class="slidecontainer" style="width:50%; margin:auto">
         <input type="range" min="1" max="100" value="50" class="slider" id="myRange"
@@ -767,7 +767,7 @@
             lastMarkerindex = i + 1;
         } else {
             var i = lastMarkerindex;
-            while (i < markers.length && markers[i].year < value) {
+            while (i < markers.length && markers[i].meteorite.year < value) {
                 mymap.addLayer(markers[i]);
                 i++
             }
