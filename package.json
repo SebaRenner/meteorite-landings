@@ -1,0 +1,25 @@
+{
+  "name": "meteorite-landings",
+  "version": "1.0.0",
+  "description": "A students project about data visulisation",
+  "main": "index.js",
+  "dependencies": {
+    "leaflet": "^1.6.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-leaflet": "^2.6.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.fhnw.ch/ivis-hs19/meteorite-landings.git"
+  },
+  "keywords": [
+    "ivis"
+  ],
+  "author": "Alain Baumann, Sebastian Renner",
+  "license": "ISC"
+}
