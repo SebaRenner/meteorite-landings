@@ -1,9 +1,9 @@
 var mymap = L.map('mapid', {
-    zoomControl: false, minZoom: 2.3,
+    zoomControl: false, minZoom: 2.1,
     maxBoundsViscosity: 1,
     maxBounds: [
         [-60, -180],
-        [90, 180]
+        [80, 180]
     ]
 }).setView([0, 0], 1);
 var info_name = document.getElementById("info-name");
@@ -48,7 +48,7 @@ function createAllMarkers(meteorite) {
 
     var isInDictionaryAtPosition = contains(meteorite.name);
     if (isInDictionaryAtPosition > -1) {
-        var specialMarker = createMarker(meteorite,
+        var marker = createMarker(meteorite,
             {
                 color: '#ff7904',
                 weight: 3,
@@ -57,17 +57,19 @@ function createAllMarkers(meteorite) {
                 fillOpacity: 0.33,
                 radius: parseFloat(meteorite.mass)
             }, isInDictionaryAtPosition);
-        listOfSpecialMarkers.push(specialMarker)
+        listOfSpecialMarkers.push(marker)
+    } else {
+
+        marker = createMarker(meteorite, {
+            color: 'rgb(255,0,51)',
+            weight: 1,
+            opacity: 0.15,
+            fillColor: 'rgb(255,0,51)',
+            fillOpacity: 0.33,
+            radius: parseFloat(meteorite.mass)
+        }, isInDictionaryAtPosition);
     }
-    var marker = createMarker(meteorite, {
-        color: 'rgb(255,0,51)',
-        weight: 1,
-        opacity: 0.15,
-        fillColor: 'rgb(255,0,51)',
-        fillOpacity: 0.33,
-        radius: parseFloat(meteorite.mass)
-    }, isInDictionaryAtPosition);
-    listOfAllMarkers.push(marker)
+    listOfAllMarkers.push(marker);
 }
 
 function showSpecialMarkers() {
