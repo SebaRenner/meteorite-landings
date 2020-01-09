@@ -9,12 +9,81 @@ function contains(name) {
 
 const infodictionary =
     [{
-        name: "Rivolta de Bassi",
+        name: "Krasnojarsk",
         image: "images/Krasnojarsk.jpg",
         info: "Krasnojarsk was the first pallasite meteorite ever found and studied and led to the creation of the Pallasite group, named after Pallas. It was also the first meteorite ever etched with acid (by G. Thomson) and therefore was the first one to show to human eyes the Widmanstätten pattern."
     },
-        {name: "Zhigansk", image: "images/Zhigansk.jpg", info: "alles huren nothing is displayed here"},
-        {name: "Jalandhar", image: "images/Zhigansk.jpg", info: "alles huren nothing is displayed here"}
+        {
+            name: "Zhigansk",
+            image: "images/Zhigansk.jpg",
+            info: ""},
+        {
+            name: "Sylacauga",
+            image: "images/Sylacauga.jpg",
+            info: "The Sylacauga meteorite is the first documented extraterrestrial object to have injured a human being. The grapefruit-sized fragment crashed through the roof of a farm house, bounced off a large wooden console radio, and hit Ann Elizabeth Hodges while she napped on a couch. The 34-year-old woman was badly bruised on one side of her body, but was able to walk. The event received worldwide publicity."},
+        {
+            name: "Chelyabinsk",
+            image: "images/Chelyabinsk.jpg",
+            info: "Extremely bright fireball entered atmosphere over Alaska and moving westward toward Chelyabinsk, near its termination point shortly before sunrise, creating a huge airblast shock that damaged thousands of buildings in Chelyabinsk (mostly broken glass) and injuring more than 1000 people; apparently meteorites were found in water under a large circular broken-ice feature found soon after the event."
+        },
+        {
+            name: "Barwell",
+            image: "images/Barwell.jpg",
+            info: "Barwell is the largest and best recorded meteorite fall in British history. Although our exploration and understanding of space has moved on enormously since those first tentative steps in the 1960s, it is still thrilling to get close to this visitor from an ancient world."
+        },
+        {
+            name: "Wethersfield (1971)",
+            image: "images/Whethersfield.jpg",
+            info: " The Cassarinos were sleeping and, surprisingly, were not awakened by the noise of the space rock passing through the roof of the house and lodging itself into the ceiling sheetrock of their second floor apartment.\n" +
+                "\n" +
+                "When he got up a 6:00 a.m. to go to work, Paul Cassarino noticed the living room floor cluttered with broken plaster and dust and saw the meteorite embedded in the ceiling insulation.  He pulled it out with his hand, put it on the floor and went to his job at Capewell Manufacturing.\n" +
+                "\n" +
+                "Fun fact: 11 years later the same small town was hit by a similar meteorite again."
+        },
+        {
+            name: "Mihonoseki",
+            image: "images/Mihonoseki.jpg",
+            info: "During a thunderstorm the meteorite fell through the roof of a two-story house in the town of Mihonoseki. It penetrated two floors and was found the next day under the house near a small hole in the ground, one individual weighing 6.38 kg. A fireball was observed before by many eye-witnesses."
+        },
+        {
+            name: "Santa Rosa",
+            image: "images/Santa-Rosa.jpg",
+            info: "In early 1810, on a Holy Saturday, a woman named Cecilia Corredor found the meteorite near the town in the Tocavita Hill. It was moved to the urban center of Santa Rosa de Viterbo, where it served as an anvil in the town's iron foundry for a long time. On 8 September 1877, the town's mayor had the meteorite placed on a stone column and exhibited in the town's central park."
+        },
+        {
+            name: "Tucson",
+            image: "images/Tucson_ring.jpg",
+            info: "The Tucson Ring meteorite is a brezinaite meteorite fragment. It was reported as one of several masses of virgin iron found at the foot of the Sierra de la Madera and transported to the plaza of Tucson, Arizona circa 1850, where it was used as an anvil in a blacksmith's shop."
+        },
+        {
+            name: "Wedderburn",
+            image: "images/Wedderburn.jpg",
+            info: "The Wedderburn meteorite is an iron meteorite discovered in 1951 near the town of Wedderburn in the state of Victoria, Australia.\n" +
+                "\n" +
+                "In 2019 it was announced that edscottite, a mineral previously not found in nature, had been identified in a sample of the Wedderburn meteorite. It is believed the mineral was created in the core of another planet."
+        },
+        {
+            name: "Valera",
+            image: "images/Valera.jpg",
+            info: "On the evening of Oct. 15, 1972, farmhands in Trujillo, Venezuela, heard a sonic boom. The next morning, a large rock was found alongside a dead cow with a crushed neck and clavicle. Years later, scientists confirmed the rock, which in the meantime had served as a doorstop, was a meteorite.\n" +
+                "\n" +
+                "This is the only known meteorite responsible for a fatality, at least to date."
+        },
+        {
+            name: "Peekskill",
+            image: "images/Peekskill.jpg",
+            info: "On Oct. 9, 1992, video cameras at Friday night football games in the northeastern United States caught the fiery descent of a meteorite that would end its fall by punching through the trunk of a red Chevy Malibu parked in Peekskill, N.Y. The owner of the car, 18-year-old Michelle Knapp, sold the car within a week for 25 times the $400 she paid for it when buying it from her grandmother. \n" +
+                "\n" +
+                "Not only are two pieces of this meteorite for sale, collectors also have a chance to purchase the original title to the Malibu and the bulb from the rear tail light, which exploded when the car's trunk was punctured by the meteorite."
+        },
+        {
+            name: "Mbale",
+            image: "images/Mbale.jpg",
+            info: "On Aug. 14, 1992, residents of the Nigerian city of Mbale heard a loud explosion that became a rumbling, accompanied by a white smoke trail in the sky. Then rocks rained down, pelting an area of about 1.9 by 4.3 miles (3 by 7 kilometers). One small meteorite even struck a young boy after ricocheting off a banana tree. Because the region was being ravaged by AIDS, Mbale residents believed the meteorite shower brought a cure from God, and they ground up the stones into a paste that was eaten or applied topically.\n" +
+            "\n" +
+            "Within several months, 426 stones weighting 238 pounds (108 kilograms) had been recovered from this large meteorite shower."
+        }
+
 
     ];
 const datasmall = [
