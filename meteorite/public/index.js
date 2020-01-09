@@ -1,4 +1,4 @@
-var mymap = L.map('mapid', {zoomControl: false}).setView([0, 0], 1);
+var mymap = L.map('mapid', {zoomControl: false,minZoom:2.3}).setView([0, 0], 1);
 var info_name = document.getElementById("info-name");
 var info_recclass = document.getElementById("info-recclass");
 var info_year = document.getElementById("info-year");
@@ -13,7 +13,13 @@ var p4 =document.getElementById("t4")
 
 var info_image = document.getElementById("info-image");
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
-    attribution: '©OpenStreetMap, ©CartoDB'
+    attribution: '©OpenStreetMap, ©CartoDB',
+    noWrap:true,
+    bounds: [
+        [-90, -180],
+        [90, 180]
+    ]
+
 }).addTo(mymap);
 L.control.zoom({
     position: 'topright'
