@@ -96,11 +96,11 @@ function createMarker(meteorite, markerOptions, isInDictionaryAtPosition) {
     c.meteorite = meteorite;
     c.dictinaryPosition = isInDictionaryAtPosition;
 
-    var p = c.bindPopup("meteorite: " + c.meteorite.name + "<br>"
-        + "mass: " + c.meteorite.mass + "<br>"
+    var p = c.bindPopup("<b>" + c.meteorite.name + "</b>" + "<br>"
+        + "mass (g): " + c.meteorite.mass + "<br>"
         + "category: " + c.meteorite.recclass + "<br>"
         + "year: " + c.meteorite.year + "<br>"
-        + "fell: " + c.meteorite.fall);
+        + "fell/found: " + c.meteorite.fall);
 
     p.on('mouseover', function (e) {
         this.openPopup();
@@ -131,6 +131,30 @@ function display_info(e) {
     }
 
 }
+
+// Info Sidebar
+function infobar() {
+    info_name.innerText = "Meteorite Landings";
+    info_position.innerText = "";
+    info_mass.innerText = "The baseline for this project is a dataset where meteorites touched-down on earth, provided by NASA. " +
+        "The original data contains about 45000 meteorites with attributes like their mass, category and the year they hit earth. "  +
+        "We eliminated entries with missing information and clustered meteorites which descend from the same meteor."
+        + "\n" + "\n" +
+        "The year attribute is used to create a slider which filters the entries. The more you pull the slider to the right the " +
+        "bigger the interval gets."
+        + "\n" + "\n" +
+        "Each meteorite is represented by a marker (circle). If you hover over a circle it shows some information about the selected element. " +
+        "Orange marker indicate that their is more information available about this particular meteorite. If you click on one of them a sidebar will " +
+        "open with they story behind this specific meteorite."
+        + "\n" + "\n";
+    info_recclass.innerText = "";
+    info_year.innerHTML = "&copy; by Alain Baumann & Sebastian Renner";
+    info_fall.innerText = "FHNW";
+    info_detail.innerHTML = "";
+    info_image.src = "/images/fhnw.png";
+    openNav();
+}
+
 
 ///SLIDER
 var slider = document.getElementById("myRange");
@@ -167,7 +191,7 @@ function onSliderValueChange(value) {
         lastMarkerindex = i - 1;
     }
     lastSlidervalue = value;
-    prog.innerText = "1490 - " + value;
+    prog.innerText = "Meteorite impacts from 1490 to " + value;
 }
 
 
