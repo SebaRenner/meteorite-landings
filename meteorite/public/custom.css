@@ -1,0 +1,143 @@
+.map {
+    margin: auto;
+    position: relative;
+    top: -16px;
+}
+
+.info-title {
+    color: #ffffff;
+    display: inline-block;
+}
+
+.info-text {
+    color: #ffffff;
+}
+
+/* The slider itself */
+.slider {
+    -webkit-appearance: none;
+    width: 50%;
+    height: 20px;
+    margin-top: -9px;
+    border-radius: 5px;
+    background: rgba(170, 187, 196, 0);
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    position: fixed;
+    left: 25%;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #587daf;
+    cursor: pointer;
+    position: relative;
+    z-index:1000;
+}
+
+.slider::-moz-range-thumb {
+    width: 5px;
+    height: 20px;
+
+    background: #FF0033;
+    cursor: pointer;
+}
+
+.sidenav {
+    height: 80vh;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(17, 17, 17, 0.51);
+    margin-top: 10vh;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
+    z-index: 1000;
+
+}
+
+.sidenav a {
+    padding: 0px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    position: relative;
+    z-index: -1;
+
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: relative;
+    display: inline-block;
+    float: right;
+    top: -10px;
+    left: 10px;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#timeline {
+    z-index:-1;
+    height: 1px;
+    width: 100%;
+    background-color: #aabbc4;
+    position: relative;
+
+}
+
+.mfirst {
+    top: 15px;
+    left: -4.5%;
+}
+
+.m2 {
+    top: 15px;
+    left: 30%
+}
+
+.m3 {
+    top: 15px;
+    left: 60%
+}
+
+
+.mlast {
+    top: 15px;
+    left: 85%
+}
+
+
+.legend-entry {
+    float: left;
+    position: relative;
+    -moz-transform: rotate(-45.0deg); /* FF3.5+ */
+    -o-transform: rotate(-45.0deg); /* Opera 10.5 */
+    -webkit-transform: rotate(-45.0deg); /* Saf3.1+, Chrome */
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
+}
