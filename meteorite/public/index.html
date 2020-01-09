@@ -115,7 +115,6 @@
     var info_detail = document.getElementById("info_long");
 
     var info_image = document.getElementById("info-image");
-    console.log(info_image)
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
         attribution: '©OpenStreetMap, ©CartoDB'
     }).addTo(mymap);
@@ -171,7 +170,9 @@
     function createMarker(meteorite, color, isInDictionaryAtPosition) {
         var c = L.circle([meteorite.reclat, meteorite.reclong], {
             color: color,
-            stroke: false,
+        //    stroke: false,
+           // strokeColor: color,
+            strokeOpacity: 1,
             fillColor: color,
             fillOpacity: 0.5,
             radius: parseFloat(meteorite.mass)
@@ -179,7 +180,6 @@
         c.meteorite = meteorite;
         c.dictinaryPosition = isInDictionaryAtPosition;
 
-        markers.push(c);
         var p = c.bindPopup("meteorite: " + c.meteorite.name + "<br>"
             + "mass: " + c.meteorite.mass + "<br>"
             + "year: " + c.meteorite.year + "<br>"
