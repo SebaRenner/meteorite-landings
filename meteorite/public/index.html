@@ -46,6 +46,7 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Meteorite Landings</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 </head>
 <body>
 <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -145,7 +146,12 @@
         c.dictinaryPosition = isInDictionaryAtPosition;
 
         markers.push(c);
-        var p = c.bindPopup("meteorimpact: " + c.meteorite.name);
+        var p = c.bindPopup("meteorite: " + c.meteorite.name + "<br>"
+            + "mass: " + c.meteorite.mass + "<br>"
+            + "year: " + c.meteorite.year + "<br>"
+            + "category: " + c.meteorite.recclass + "<br>"
+            + "fell: " + c.meteorite.fall);
+
         p.on('mouseover', function (e) {
             this.openPopup();
         });
