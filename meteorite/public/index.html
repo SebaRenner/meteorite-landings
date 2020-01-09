@@ -64,7 +64,14 @@
 </div>
 <div style="text-align: center">
     <div id="mapid" class="map" style="height: 80vh;
-        width: 100%;"></div>
+        width: 100%;">
+        <div class="leaflet-right leaflet-bottom">
+            <input type="button" id="Btn1" value="special" onclick="showSpecialMarkers()"
+                   class="btnStyle span3 leaflet-control"/>
+            <input type="button" id="Btn2" value="all" onclick="showAllMarkers()"
+                   class="btnStyle span3 leaflet-control"/>
+        </div>
+    </div>
     <p id="progress">2013</p>
     <div class="slidecontainer" style="width:50%; margin:auto">
         <input type="range" min="1" max="100" value="50" class="slider" id="myRange"
@@ -96,6 +103,7 @@
 </body>
 <script>
 
+
     var mymap = L.map('mapid', {zoomControl: false}).setView([0, 0], 1);
     var info_name = document.getElementById("info-name");
     var info_recclass = document.getElementById("info-recclass");
@@ -116,35 +124,58 @@
         closeNav();
     });
 
-    /* var circle = L.circle([51.508, -0.11], {
-         color: 'red',
-         fillColor: '#f03',
-         fillOpacity: 0.5,
-         radius: 500,
-     }).addTo(mymap).on('click', display_info);*/
-    var markers = [];
+    var listOfAllMarkers = [];
+    var listOfSpecialMarkers = [];
     //CHANGE datasmall to data to show all markers
-    datasmall.forEach((value, index) => {
-        createMarker(value)
+    data.forEach((value, index) => {
+        createAllMarkers(value)
     })
+    var allMarkerLayer = L.layerGroup(listOfAllMarkers);
+    mymap.addLayer(allMarkerLayer);
+    var markerListForSlider = listOfAllMarkers;
+    var specialMarkerLayer = L.layerGroup(listOfSpecialMarkers);
 
     //creates markers and adds them to internal markerarray
-    function createMarker(meteorite) {
-        var color = '#f03';
+    function createAllMarkers(meteorite) {
+
         var isInDictionaryAtPosition = contains(meteorite.name);
         if (isInDictionaryAtPosition > -1) {
-            color = '#ff7904'
+            var specialMarker = createMarker(meteorite, '#ff7904', isInDictionaryAtPosition);
+            listOfSpecialMarkers.push(specialMarker)
         }
+        var marker = createMarker(meteorite, 'rgba(255,0,51,0.33)', isInDictionaryAtPosition);
+        listOfAllMarkers.push(marker)
+    }
+
+    function showSpecialMarkers() {
+        mymap.removeLayer(allMarkerLayer);
+        mymap.addLayer(specialMarkerLayer);
+        markerListForSlider = listOfSpecialMarkers;
+        slider.value = slider.max;
+        lastMarkerindex = listOfSpecialMarkers.length - 1;
+        onSliderValueChange(slider.max)
+    }
+
+    function showAllMarkers() {
+        mymap.removeLayer(specialMarkerLayer);
+        mymap.addLayer(allMarkerLayer);
+        markerListForSlider = listOfAllMarkers;
+        slider.value = slider.max;
+        lastMarkerindex = listOfAllMarkers.length - 1;
+        onSliderValueChange(slider.max)
+
+    }
+
+    function createMarker(meteorite, color, isInDictionaryAtPosition) {
         var c = L.circle([meteorite.reclat, meteorite.reclong], {
             color: color,
+            stroke: false,
             fillColor: color,
             fillOpacity: 0.5,
             radius: parseFloat(meteorite.mass)
-        }).addTo(mymap).on('click', display_info);
+        }).on('click', display_info);
         c.meteorite = meteorite;
         c.dictinaryPosition = isInDictionaryAtPosition;
-
-        markers.push(c);
         var p = c.bindPopup("meteorimpact: " + c.meteorite.name);
         p.on('mouseover', function (e) {
             this.openPopup();
@@ -152,6 +183,7 @@
         p.on('mouseout', function (e) {
             this.closePopup();
         });
+        return c
     }
 
     function display_info(e) {
@@ -183,20 +215,20 @@
     slider.min = min;
     slider.value = slider.max;
     var lastSlidervalue = slider.value;
-    var lastMarkerindex = markers.length - 1;
+    var lastMarkerindex = listOfAllMarkers.length - 1;
 
     function onSliderValueChange(value) {
         if (value < lastSlidervalue) {
             var i = lastMarkerindex;
-            while (i >= 0 && markers[i].meteorite.year > value - 1) {
-                mymap.removeLayer(markers[i]);
+            while (i >= 0 && markerListForSlider[i].meteorite.year > value - 1) {
+                mymap.removeLayer(markerListForSlider[i]);
                 i--
             }
             lastMarkerindex = i + 1;
         } else {
             var i = lastMarkerindex;
-            while (i < markers.length && markers[i].meteorite.year < value) {
-                mymap.addLayer(markers[i]);
+            while (i < markerListForSlider.length && markerListForSlider[i].meteorite.year < value) {
+                mymap.addLayer(markerListForSlider[i]);
                 i++
             }
             lastMarkerindex = i - 1;
