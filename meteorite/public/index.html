@@ -46,6 +46,7 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Meteorite Landings</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 </head>
 <body>
 <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -60,7 +61,7 @@
     <h6 id="info-fall" class="info-text">-----</h6>
 
     <p id="info_long" class="info-text">-</p>
-    <img id="image" src="images/Krasnojarsk.jpg" alt="Krasnojarsk">
+    <img id="info-image" weight="400" height="250">
 </div>
 <div style="text-align: center">
     <div id="mapid" class="map" style="height: 80vh;
@@ -105,7 +106,8 @@
     var info_position = document.getElementById("info-position");
     var info_detail = document.getElementById("info_long");
 
-    var image = document.getElementById("image");
+    var info_image = document.getElementById("info-image");
+    console.log(info_image)
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
         attribution: '©OpenStreetMap, ©CartoDB'
     }).addTo(mymap);
@@ -145,7 +147,12 @@
         c.dictinaryPosition = isInDictionaryAtPosition;
 
         markers.push(c);
-        var p = c.bindPopup("meteorimpact: " + c.meteorite.name);
+        var p = c.bindPopup("meteorite: " + c.meteorite.name + "<br>"
+            + "mass: " + c.meteorite.mass + "<br>"
+            + "year: " + c.meteorite.year + "<br>"
+            + "category: " + c.meteorite.recclass + "<br>"
+            + "fell: " + c.meteorite.fall);
+
         p.on('mouseover', function (e) {
             this.openPopup();
         });
@@ -163,11 +170,12 @@
             var dictionaryEntry = infodictionary[dictionaryIndex];
             info_name.innerText = m.name;
             info_position.innerText = m.GeoLocation;
-            info_mass.innerText = m.mass;
-            info_recclass.innerText = m.recclass;
-            info_year.innerText = m.year;
-            info_fall.innerText = m.fall;
+            info_mass.innerText = "Mass (g): " + m.mass;
+            info_recclass.innerText = "Category: " + m.recclass;
+            info_year.innerText = "Year: " + m.year;
+            info_fall.innerText = "Fell/Found: " + m.fall;
             info_detail.innerText = dictionaryEntry.info;
+            info_image.src = dictionaryEntry.image;
 
             openNav();
         }
