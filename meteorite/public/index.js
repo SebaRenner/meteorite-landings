@@ -1,4 +1,11 @@
-var mymap = L.map('mapid', {zoomControl: false,minZoom:2.3}).setView([0, 0], 1);
+var mymap = L.map('mapid', {
+    zoomControl: false, minZoom: 2.3,
+    maxBoundsViscosity: 1,
+    maxBounds: [
+        [-60, -180],
+        [90, 180]
+    ]
+}).setView([0, 0], 1);
 var info_name = document.getElementById("info-name");
 var info_recclass = document.getElementById("info-recclass");
 var info_year = document.getElementById("info-year");
@@ -6,19 +13,15 @@ var info_mass = document.getElementById("info-mass");
 var info_fall = document.getElementById("info-fall");
 var info_position = document.getElementById("info-position");
 var info_detail = document.getElementById("info_long");
-var p1 =document.getElementById("t1")
-var p2 =document.getElementById("t2")
-var p3 =document.getElementById("t3")
-var p4 =document.getElementById("t4")
+var p1 = document.getElementById("t1")
+var p2 = document.getElementById("t2")
+var p3 = document.getElementById("t3")
+var p4 = document.getElementById("t4")
 
 var info_image = document.getElementById("info-image");
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
-    attribution: '©OpenStreetMap, ©CartoDB',
-    noWrap:true,
-    bounds: [
-        [-90, -180],
-        [90, 180]
-    ]
+    attribution: '©OpenStreetMap, ©CartoDB'
+
 
 }).addTo(mymap);
 L.control.zoom({
@@ -137,13 +140,12 @@ slider.min = min;
 slider.value = slider.max;
 var lastSlidervalue = slider.value;
 var lastMarkerindex = listOfAllMarkers.length - 1;
-var jump= (max-min)/3
+var jump = (max - min) / 3
 //TIMELINE
-p1.innerText=min.toString()
-p2.innerText=Math.round(min+jump).toString()
-p3.innerText=Math.round(min+2*jump).toString()
-p4.innerText=max.toString()
-
+p1.innerText = min.toString()
+p2.innerText = Math.round(min + jump).toString()
+p3.innerText = Math.round(min + 2 * jump).toString()
+p4.innerText = max.toString()
 
 
 function onSliderValueChange(value) {

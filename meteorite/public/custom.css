@@ -37,15 +37,14 @@
     border-radius: 50%;
     background: #587daf;
     cursor: pointer;
-    position: relative;
     z-index:1000;
 }
 
 .slider::-moz-range-thumb {
-    width: 5px;
-    height: 20px;
-
-    background: #FF0033;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #587daf;
     cursor: pointer;
 }
 
@@ -96,31 +95,41 @@
 #timeline {
     z-index:-1;
     height: 1px;
-    width: 100%;
+    margin-left: 1%;
+    width: 98%;
     background-color: #aabbc4;
-    position: relative;
 
+
+}
+.container{
+    margin-left: -5%;
+    width: 90%;
+    height: auto;
 }
 
 .mfirst {
     top: 15px;
-    left: -4.5%;
+    left: -0.5%;
+    position: relative;
 }
 
 .m2 {
     top: 15px;
-    left: 30%
+    left: 33%;
+    position: relative;
 }
 
 .m3 {
     top: 15px;
-    left: 60%
+    left: 66%;
+    position: relative;
 }
 
 
 .mlast {
     top: 15px;
-    left: 85%
+    left: 98%;
+    position: relative;
 }
 
 

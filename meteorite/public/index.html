@@ -74,14 +74,16 @@
                    class="btnStyle span3 leaflet-control"/>
         </div>
     </div>
-        <p id="progress">1490 - 2013</p>
+    <p id="progress">1490 - 2013</p>
     <div class="slidecontainer" style="width:50%; margin:auto">
-        <figure>
 
-            <input type="range" min="1" max="100" value="50" class="slider" id="myRange"
-                   onchange="onSliderValueChange(this.value)">
-            <figcaption>
-                <div id="timeline"></div>
+
+        <input type="range" min="1" max="100" value="50" class="slider" id="myRange"
+               onchange="onSliderValueChange(this.value)">
+        <div id="timeline"></div>
+
+        <div class="container">
+
                 <p id="t1" class="legend-entry mfirst">
                     start
                 </p>
@@ -94,10 +96,12 @@
                 <p id="t4" class="legend-entry mlast">
                     end
                 </p>
-            </figcaption>
-        </figure>
-    </div>
 
+
+
+        </div>
+
+    </div>
 </div>
 </body>
 <script type="text/javascript" src="./index.js"></script>
