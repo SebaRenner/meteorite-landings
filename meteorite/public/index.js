@@ -93,8 +93,8 @@ function createMarker(meteorite, markerOptions, isInDictionaryAtPosition) {
 
     var p = c.bindPopup("meteorite: " + c.meteorite.name + "<br>"
         + "mass: " + c.meteorite.mass + "<br>"
-        + "year: " + c.meteorite.year + "<br>"
         + "category: " + c.meteorite.recclass + "<br>"
+        + "year: " + c.meteorite.year + "<br>"
         + "fell: " + c.meteorite.fall);
 
     p.on('mouseover', function (e) {
@@ -163,7 +163,7 @@ function onSliderValueChange(value) {
         lastMarkerindex = i - 1;
     }
     lastSlidervalue = value;
-    prog.innerText = value;
+    prog.innerText = "1490 - " + value;
 }
 
 
