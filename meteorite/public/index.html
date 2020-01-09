@@ -7,12 +7,23 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
           integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
           crossorigin=""/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
             integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
             crossorigin=""></script>
     <script type="text/javascript" src="./JSONData.js"></script>
-
+    <script type="text/javascript" src="./MeteorInfo.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="theme-color" content="#000000"/>
     <meta
@@ -39,24 +50,39 @@
 <body>
 <noscript>You need to enable JavaScript to run this app.</noscript>
 <div id="root"></div>
+<div id="sideInfo" class="sidenav">
+    <h1 id="info-name" class="info-title">-----</h1>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <h3 id="info-position" class="info-text">-----</h3>
+    <h6 id="info-mass" class="info-text">-----</h6>
+    <h6 id="info-recclass" class="info-text">-----</h6>
+    <h6 id="info-year" class="info-text">-----</h6>
+    <h6 id="info-fall" class="info-text">-----</h6>
+
+    <p id="info_long" class="info-text">-</p>
+    <img id="image" src="images/Krasnojarsk.jpg" alt="Krasnojarsk">
+</div>
 <div style="text-align: center">
-    <div id="mapid" style="height: 500px; width: 50%; margin: auto"></div>
+    <div id="mapid" class="map" style="height: 80vh;
+        width: 100%;"></div>
     <p id="progress">2013</p>
     <div class="slidecontainer" style="width:50%; margin:auto">
         <input type="range" min="1" max="100" value="50" class="slider" id="myRange"
                onchange="onSliderValueChange(this.value)">
     </div>
-    <p id="info">-----</p>
+
 </div>
 
-<div id="Krasnojarsk" style = display:none>
-  Krasnojarsk was the first pallasite meteorite ever found and studied and led to the creation of the Pallasite group, named after Pallas.
-  <br>
-  It was also the first meteorite ever etched with acid (by G. Thomson) and therefore was the first one to show to human eyes the Widmanstätten pattern.
-  <br>
-  <img src="Krasnojarsk.jpg" alt="Krasnojarsk">
-</div>
+<!--<div id="Krasnojarsk" style=display:none>
+    Krasnojarsk was the first pallasite meteorite ever found and studied and led to the creation of the Pallasite group,
+    named after Pallas.
+    <br>
+    It was also the first meteorite ever etched with acid (by G. Thomson) and therefore was the first one to show to
+    human eyes the Widmanstätten pattern.
+    <br>
 
+</div>
+-->
 <!--
   This HTML file is a template.
   If you open it directly in the browser, you will see an empty page.
@@ -70,28 +96,43 @@
 </body>
 <script>
 
-    var mymap = L.map('mapid').setView([0, 0], 1)
-    var infopanel = document.getElementById("info")
+    var mymap = L.map('mapid', {zoomControl: false}).setView([0, 0], 1);
+    var info_name = document.getElementById("info-name");
+    var info_recclass = document.getElementById("info-recclass");
+    var info_year = document.getElementById("info-year");
+    var info_mass = document.getElementById("info-mass");
+    var info_fall = document.getElementById("info-fall");
+    var info_position = document.getElementById("info-position");
+    var info_detail = document.getElementById("info_long");
+
+    var image = document.getElementById("image");
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
         attribution: '©OpenStreetMap, ©CartoDB'
     }).addTo(mymap);
+    L.control.zoom({
+        position: 'topright'
+    }).addTo(mymap);
+    mymap.on('click', function (e) {
+        closeNav();
+    });
 
-
-   /* var circle = L.circle([51.508, -0.11], {
-        color: 'red',
-        fillColor: '#f03',
-        fillOpacity: 0.5,
-        radius: 500,
-    }).addTo(mymap).on('click', display_info);*/
+    /* var circle = L.circle([51.508, -0.11], {
+         color: 'red',
+         fillColor: '#f03',
+         fillOpacity: 0.5,
+         radius: 500,
+     }).addTo(mymap).on('click', display_info);*/
     var markers = [];
-    data.forEach((value, index) => {
+    //CHANGE datasmall to data to show all markers
+    datasmall.forEach((value, index) => {
         createMarker(value)
     })
 
     //creates markers and adds them to internal markerarray
     function createMarker(meteorite) {
         var color = '#f03';
-        if (meteorite !== "") {
+        var isInDictionaryAtPosition = contains(meteorite.name);
+        if (isInDictionaryAtPosition > -1) {
             color = '#ff7904'
         }
         var c = L.circle([meteorite.reclat, meteorite.reclong], {
@@ -101,6 +142,7 @@
             radius: parseFloat(meteorite.mass)
         }).addTo(mymap).on('click', display_info);
         c.meteorite = meteorite;
+        c.dictinaryPosition = isInDictionaryAtPosition;
 
         markers.push(c);
         var p = c.bindPopup("meteorimpact: " + c.meteorite.name);
@@ -113,10 +155,23 @@
     }
 
     function display_info(e) {
+        closeNav();
         var m = e.target.meteorite;
-        showInfo(m.name);
-        infopanel.innerText = m.name.concat(": ",m.recclass," - ",m.year, " - ",
-        m.mass, " gramm, ", m.fall, " at ",m.GeoLocation)
+        var dictionaryIndex = e.target.dictinaryPosition;
+
+        if (dictionaryIndex > -1) {
+            var dictionaryEntry = infodictionary[dictionaryIndex];
+            info_name.innerText = m.name;
+            info_position.innerText = m.GeoLocation;
+            info_mass.innerText = m.mass;
+            info_recclass.innerText = m.recclass;
+            info_year.innerText = m.year;
+            info_fall.innerText = m.fall;
+            info_detail.innerText = dictionaryEntry.info;
+
+            openNav();
+        }
+
     }
 
     ///SLIDER
@@ -150,24 +205,51 @@
         prog.innerText = value;
     }
 
-    function showInfo(name) {
-      if (name === "Krasnojarsk") {
-          var x = document.getElementById("Krasnojarsk");
-          if (x.style.display === "none") {
-              x.style.display = "block";
-          } else {
-              x.style.display = "none";
-          }
-      } else {
-          var x = document.getElementById("Krasnojarsk");
-          x.style.display = "none";
-      }
 
+    var isInfoBarOpen = false;
+
+    function openNav() {
+        var sideInfo = document.getElementById("sideInfo");
+        sideInfo.style.width = "45%";
+        sideInfo.style.paddingLeft = "20px";
+        sideInfo.style.paddingRight = "20px";
+        isInfoBarOpen = true;
     }
 
+    function closeNav() {
+        if (isInfoBarOpen) {
+            info_name.innerText = "";
+            info_position.innerText = "";
+            info_mass.innerText = "";
+            info_recclass.innerText = "";
+            info_year.innerText = "";
+            info_fall.innerText = "";
+            info_detail.innerText = "";
+            var sideInfo = document.getElementById("sideInfo");
+            sideInfo.style.width = "0px";
+            sideInfo.style.paddingLeft = "0px";
+            sideInfo.style.paddingRight = "0px";
+            isInfoBarOpen = false;
+        }
+    }
 
 </script>
 <style>
+    .map {
+        margin: auto;
+        position: relative;
+        top: -16px;
+    }
+
+    .info-title {
+        color: #ffffff;
+        display: inline-block;
+    }
+
+    .info-text {
+        color: #ffffff;
+    }
+
     /* The slider itself */
     .slider {
         -webkit-appearance: none;
@@ -197,6 +279,60 @@
         border-radius: 50%;
         background: #4CAF50;
         cursor: pointer;
+    }
+
+    .sidenav {
+        height: 80vh;
+        width: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: rgba(17, 17, 17, 0.51);
+        margin-top: 10vh;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 10px;
+        padding-left: 0px;
+        padding-right: 0px;
+        z-index: 1000;
+
+    }
+
+    .sidenav a {
+        padding: 0px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+        position: relative;
+        z-index: -1;
+
+    }
+
+    .sidenav a:hover {
+        color: #f1f1f1;
+    }
+
+    .sidenav .closebtn {
+        position: relative;
+        display: inline-block;
+        float: right;
+        top: -10px;
+        left: 10px;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+    @media screen and (max-height: 450px) {
+        .sidenav {
+            padding-top: 15px;
+        }
+
+        .sidenav a {
+            font-size: 18px;
+        }
     }
 </style>
 </html>
