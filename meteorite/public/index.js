@@ -21,8 +21,6 @@ var p4 = document.getElementById("t4")
 var info_image = document.getElementById("info-image");
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
     attribution: '©OpenStreetMap, ©CartoDB'
-
-
 }).addTo(mymap);
 L.control.zoom({
     position: 'topright'
@@ -174,6 +172,7 @@ p3.innerText = Math.round(min + 2 * jump).toString();
 p4.innerText = max.toString();
 
 
+
 function onSliderValueChange(value) {
     if (value < lastSlidervalue) {
         var i = lastMarkerindex;
@@ -184,7 +183,7 @@ function onSliderValueChange(value) {
         lastMarkerindex = i + 1;
     } else {
         var i = lastMarkerindex;
-        while (i < markerListForSlider.length && markerListForSlider[i].meteorite.year < value) {
+        while (i < markerListForSlider.length && markerListForSlider[i].meteorite.year <= value) {
             mymap.addLayer(markerListForSlider[i]);
             i++
         }
