@@ -142,12 +142,12 @@ slider.min = min;
 slider.value = slider.max;
 var lastSlidervalue = slider.value;
 var lastMarkerindex = listOfAllMarkers.length - 1;
-var jump = (max - min) / 3
+var jump = (max - min) / 3;
 //TIMELINE
-p1.innerText = min.toString()
-p2.innerText = Math.round(min + jump).toString()
-p3.innerText = Math.round(min + 2 * jump).toString()
-p4.innerText = max.toString()
+p1.innerText = min.toString();
+p2.innerText = Math.round(min + jump).toString();
+p3.innerText = Math.round(min + 2 * jump).toString();
+p4.innerText = max.toString();
 
 
 function onSliderValueChange(value) {

@@ -22,7 +22,7 @@
     border-radius: 5px;
     background: rgba(170, 187, 196, 0);
     outline: none;
-    opacity: 0.7;
+        opacity: 1;
     -webkit-transition: .2s;
     transition: opacity .2s;
     position: fixed;
@@ -35,16 +35,16 @@
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    background: #587daf;
+    background: rgb(139, 165, 199);
     cursor: pointer;
-    z-index:1000;
+    z-index: 1000;
 }
 
 .slider::-moz-range-thumb {
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    background: #587daf;
+    background: rgb(139, 165, 199);
     cursor: pointer;
 }
 
@@ -93,7 +93,7 @@
 }
 
 #timeline {
-    z-index:-1;
+    z-index: -1;
     height: 1px;
     margin-left: 1%;
     width: 98%;
@@ -101,7 +101,8 @@
 
 
 }
-.container{
+
+.container {
     margin-left: -5%;
     width: 90%;
     height: auto;
@@ -139,6 +140,45 @@
     -moz-transform: rotate(-45.0deg); /* FF3.5+ */
     -o-transform: rotate(-45.0deg); /* Opera 10.5 */
     -webkit-transform: rotate(-45.0deg); /* Saf3.1+, Chrome */
+}
+
+.ph-button {
+
+    border-style: solid;
+    border-width: 0px 0px 3px;
+    box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+    color: #FFFFFF;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-block;
+    font-style: normal;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    transition: all 200ms ease-in-out 0s;
+    white-space: nowrap;
+    font-family: "Gotham Rounded A", "Gotham Rounded B", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    padding: 5px 5px 5px;
+    width: 80px;
+    font-size: 14px;
+
+}
+
+.ph-btn-color {
+
+    border-color: #a7a8a6;
+    background-color: rgb(139, 165, 199);
+
+}
+.ph-btn-color:hover, .ph-btn-green:focus, .ph-btn-green:active {
+    background-color: rgb(92, 106, 131);
+    border-color: #60615f;
+}
+
+.btn-container {
+    margin-bottom: 15px;
 }
 
 @media screen and (max-height: 450px) {
