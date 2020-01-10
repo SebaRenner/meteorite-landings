@@ -172,7 +172,7 @@
     background-color: rgb(139, 165, 199);
 
 }
-.ph-btn-color:hover, .ph-btn-green:focus, .ph-btn-green:active {
+.ph-btn-color:hover, .ph-btn-color:focus, .ph-btn-color:active {
     background-color: rgb(92, 106, 131);
     border-color: #60615f;
 }
