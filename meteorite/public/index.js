@@ -141,15 +141,16 @@ function infobar() {
         "The year attribute is used to create a slider which filters the entries. The more you pull the slider to the right the " +
         "bigger the interval gets."
         + "\n" + "\n" +
-        "Each meteorite is represented by a marker (circle). If you hover over a circle it shows some information about the selected element. " +
+        "Each meteorite is represented by a marker (circle). If you hover over a marker some information about the selected element is shown. " +
         "Orange marker indicate that their is more information available about this particular meteorite. If you click on one of them a sidebar will " +
-        "open with they story behind this specific meteorite."
+        "open with the story behind this specific meteorite."
         + "\n" + "\n";
     info_recclass.innerText = "";
     info_year.innerHTML = "&copy; by Alain Baumann & Sebastian Renner";
     info_fall.innerText = "FHNW";
     info_detail.innerHTML = "";
-    info_image.src = "/images/fhnw.png";
+    // info_image.src = "/images/fhnw.png";
+    info_image.src = "";
     openNav();
 }
 
